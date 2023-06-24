@@ -75,15 +75,14 @@ export default function Home() {
           }}
         >
           <div>
-            <title>Mint your very own ETHWaterloo POAP using Goose.ai!</title>
-            <h2>
-              Meet Goose.ai, the cyber companion that will steal your heart with
-              every honk. This delightful goose is here to revolutionize your
-              digital journey with cuddles and unwavering loyalty. He's not your
-              average sidekick – he's a feathered friend that will keep you safe
-              and snug in the ever-changing cyber realm.
-            </h2>
+
+		  <h1 style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", padding: "20px", fontSize: "36px", color: "#fff", textAlign: "center" }}>Mint your very own ETHWaterloo POAP using Goose.ai!</h1>
+  <h2 style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", padding: "20px", fontSize: "24px", color: "#fff", textAlign: "center" }}>Meet Goose.ai, the cyber companion that will steal your heart with every honk. This delightful goose is here to revolutionize your digital journey with cuddles and unwavering loyalty. He's not your average sidekick – he's a feathered friend that will keep you safe and snug in the ever-changing cyber realm.</h2>
+
+		  
           </div>
+		  <h1>&nbsp;</h1>
+		  <h1>&nbsp;</h1>
           <IDKitWidget
             action={process.env.NEXT_PUBLIC_WLD_ACTION_NAME!}
             onSuccess={onSuccess}
@@ -123,6 +122,8 @@ export default function Home() {
               </button>
             )}
           </IDKitWidget>
+		  <h1>&nbsp;</h1>
+		  <p className="text-13 text-c2a4e5">Powered by WorldCoin</p>
         </div>
       )}
       {verified && (
