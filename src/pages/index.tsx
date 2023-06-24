@@ -1,12 +1,16 @@
 import { CredentialType, IDKitWidget } from "@worldcoin/idkit";
 import type { ISuccessResult } from "@worldcoin/idkit";
 import styles from "../styles/Home.module.css";
+import {useState} from "react";
 
 export default function Home() {
+
+	const [verified, setVerified] = useState(false);
+
 	const onSuccess = (result: ISuccessResult) => {
 
 		// This is where you should perform frontend actions once a user has been verified, such as redirecting to a new page
-
+		setVerified(true);
 	};
 
 	const handleProof = async (result: ISuccessResult) => {
@@ -33,13 +37,67 @@ export default function Home() {
 		});
 	};
 
+	const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const buttonStyle = {
+    padding: "10px 20px",
+    fontSize: "16px",
+    fontWeight: "bold",
+    borderRadius: "5px",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    background: "linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000)",
+    backgroundSize: "200% 200%",
+    animation: "gradientAnimation 5s ease infinite",
+    transition: "background 0.3s",
+  };
+
 	return (
 		<div className={styles.container}>
+			{!verified &&
 			<div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
 				<IDKitWidget action={process.env.NEXT_PUBLIC_WLD_ACTION_NAME!} onSuccess={onSuccess} handleVerify={handleProof} app_id={process.env.NEXT_PUBLIC_WLD_APP_ID!} credential_types={[CredentialType.Orb, CredentialType.Phone]}>
-					{({ open }) => <button onClick={open}>Verify with World ID</button>}
+					{({ open }) => <button
+          onClick={open}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            borderRadius: "5px",
+            color: "#fff",
+            backgroundColor: "#007bff",
+            border: "none",
+            cursor: "pointer",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            transition: "background-color 0.3s",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#0056b3";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#007bff";
+          }}
+          onMouseDown={(e) => {
+            e.target.style.backgroundColor = "#003d7b";
+          }}
+          onMouseUp={(e) => {
+            e.target.style.backgroundColor = "#0056b3";
+          }}
+        >Verify with World ID</button>}
 				</IDKitWidget>
-			</div>
+			</div> }
+			{verified && <iframe src="https://creator.voiceflow.com/prototype/64964832cba8be000738c63e" width="100%" height="600"></iframe>
+}
 		</div>
 	);
 }
